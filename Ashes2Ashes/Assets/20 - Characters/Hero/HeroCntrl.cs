@@ -8,10 +8,12 @@ namespace A2A
     {
         [SerializeField] private PlayerInputCntrl playerInputCntrl;
         [SerializeField] private float rotationSpeed = 400.0f;
+        [SerializeField] private GameObject mainCamera;
 
         private Animator animator;
 
         private Vector3 moveDirection;
+        private Vector3 playerDirection;
 
         private Vector2 playerMove;
 
@@ -36,6 +38,29 @@ namespace A2A
 
         private void Move(float dt)
         {
+            playerDirection.x = playerMove.x; // Horizontal
+            playerDirection.y = 0.0f;
+            playerDirection.z = playerMove.y; // Vertical
+
+            float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
+
+            animator.SetFloat(speedId, inputMagnitude, 0.05f, dt);
+
+            moveDirection = mainCamera.transform.TransformDirection(playerDirection);
+            moveDirection.y = 0.0f;
+
+            if (moveDirection != Vector3.zero)
+            {
+                moveDirection.Normalize();
+
+                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * dt);
+            }
+        }
+
+        private void xxxMove(float dt)
+        {
             moveDirection.x = playerMove.x; // Horizontal
             moveDirection.y = 0.0f;
             moveDirection.z = playerMove.y; // Vertical
@@ -51,6 +76,10 @@ namespace A2A
             if (moveDirection != Vector3.zero)
             {
                 moveDirection.Normalize();
+
+                float targetRotation = mainCamera.transform.rotation.eulerAngles.y;
+                Quaternion rotation = Quaternion.Euler(0.0f, targetRotation, 0.0f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
                 Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
