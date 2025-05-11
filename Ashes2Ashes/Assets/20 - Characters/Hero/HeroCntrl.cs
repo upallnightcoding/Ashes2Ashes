@@ -9,6 +9,9 @@ namespace A2A
         [SerializeField] private PlayerInputCntrl playerInputCntrl;
         [SerializeField] private float rotationSpeed = 400.0f;
         [SerializeField] private GameObject mainCamera;
+        [SerializeField] private float dashSpeed = 3.0f;
+        [SerializeField] private float dashDuration = 0.5f;
+        [SerializeField] private Transform triggerPoint;
 
         private Animator animator;
 
@@ -18,14 +21,20 @@ namespace A2A
         private Vector2 playerMove;
 
         private int speedId;
+        private int dashSpeedId;
+
+        private bool inDashMode = false;
+
+        private SpellCntrl spellCntrl;
 
         // Start is called before the first frame update
         void Start()
         {
-            //animator = GetComponentInChildren<Animator>();
             animator = GetComponent<Animator>();
+            spellCntrl = GetComponent<SpellCntrl>();
 
             speedId = Animator.StringToHash("move");
+            dashSpeedId = Animator.StringToHash("dashspeed");
         }
 
         // Update is called once per frame
@@ -34,8 +43,50 @@ namespace A2A
             playerMove = playerInputCntrl.Move;
 
             Move(Time.deltaTime);
+
+            if (playerInputCntrl.Dash && !inDashMode)
+            {
+                Dash();
+            }
+
+            if (playerInputCntrl.Fire)
+            {
+                Fire();
+            }
         }
 
+        private void Fire()
+        {
+            Debug.Log("Fire ...");
+            spellCntrl.FireLightAttack(triggerPoint.position, transform.forward);
+            playerInputCntrl.Fire = false;
+        }
+
+        /**
+         * Dash() - Turns on the dash mode and increases the animation to the
+         * dash speed.  The non-blocking co-routine is then invoked to start 
+         * the timers on the dash.
+         */
+        private void Dash()
+        {
+            inDashMode = true;
+            animator.SetFloat(dashSpeedId, dashSpeed);
+
+            StartCoroutine(DashExec());
+        }
+
+        private IEnumerator DashExec()
+        {
+            yield return new WaitForSeconds(dashDuration);
+
+            playerInputCntrl.Dash = false;
+            animator.SetFloat(dashSpeedId, 1.0f);
+            inDashMode = false;
+        }
+
+        /**
+         * Move() - 
+         */
         private void Move(float dt)
         {
             playerDirection.x = playerMove.x; // Horizontal
@@ -52,34 +103,6 @@ namespace A2A
             if (moveDirection != Vector3.zero)
             {
                 moveDirection.Normalize();
-
-                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * dt);
-            }
-        }
-
-        private void xxxMove(float dt)
-        {
-            moveDirection.x = playerMove.x; // Horizontal
-            moveDirection.y = 0.0f;
-            moveDirection.z = playerMove.y; // Vertical
-
-            float inputMagnitude = Mathf.Clamp01(moveDirection.magnitude);
-
-            Debug.Log($"inputMagnitude: {inputMagnitude}");
-
-            animator.SetFloat(speedId, inputMagnitude);
-            //animator.SetFloat(speedId, inputMagnitude, 0.05f, dt);
-            Debug.Log($"GetFloat: {animator.GetFloat(speedId)}");
-
-            if (moveDirection != Vector3.zero)
-            {
-                moveDirection.Normalize();
-
-                float targetRotation = mainCamera.transform.rotation.eulerAngles.y;
-                Quaternion rotation = Quaternion.Euler(0.0f, targetRotation, 0.0f);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
                 Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 

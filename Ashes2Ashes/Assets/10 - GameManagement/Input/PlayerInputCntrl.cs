@@ -12,13 +12,15 @@ namespace A2A
 
         public Vector2 Move { get; private set; }
         public Vector2 Look { get; private set; }
-        public bool Fire { get; private set; }
+        public bool Fire { get; set; }
+        public bool Dash { get; set; }
 
         private InputActionMap inputActionMap;
 
         private InputAction moveAction;
         private InputAction lookAction;
         private InputAction fireAction;
+        private InputAction dashAction;
 
         private void Awake()
         {
@@ -27,14 +29,17 @@ namespace A2A
             moveAction = inputActionMap.FindAction("Move");
             lookAction = inputActionMap.FindAction("Look");
             fireAction = inputActionMap.FindAction("Fire");
+            dashAction = inputActionMap.FindAction("Dash");
 
             moveAction.performed += OnMove;
             lookAction.performed += OnLook;
             fireAction.performed += OnFire;
+            dashAction.performed += OnDash;
 
             moveAction.canceled += OnMove;
             lookAction.canceled += OnLook;
             fireAction.canceled += OnFire;
+            dashAction.canceled += OnDash;
         }
 
         private void OnMove(InputAction.CallbackContext context)
@@ -50,6 +55,11 @@ namespace A2A
         private void OnFire(InputAction.CallbackContext context)
         {
             Fire = context.ReadValueAsButton();
+        }
+
+        private void OnDash(InputAction.CallbackContext context)
+        {
+            Dash = context.ReadValueAsButton();
         }
 
         private void OnEnable()
