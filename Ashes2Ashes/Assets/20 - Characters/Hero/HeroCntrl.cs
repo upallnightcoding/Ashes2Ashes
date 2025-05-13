@@ -53,11 +53,17 @@ namespace A2A
             {
                 Fire();
             }
+
+            if (playerInputCntrl.AttackLight)
+            {
+                playerInputCntrl.AttackLight = false;
+                spellCntrl.FireLightAttack(triggerPoint.position, transform.forward);
+
+            }
         }
 
         private void Fire()
         {
-            Debug.Log("Fire ...");
             spellCntrl.FireLightAttack(triggerPoint.position, transform.forward);
             playerInputCntrl.Fire = false;
         }

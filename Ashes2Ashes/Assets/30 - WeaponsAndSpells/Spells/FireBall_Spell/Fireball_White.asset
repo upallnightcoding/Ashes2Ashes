@@ -16,7 +16,7 @@ MonoBehaviour:
   image: {fileID: 0}
   baseDamage: 0
   duration: 3
-  force: 50
+  force: 30
   flashPrefab: {fileID: 0}
-  spellPrefab: {fileID: 5961922712338762150, guid: fb3c4f1615e847e40ac8ebd662e47fe3, type: 3}
+  spellPrefab: {fileID: 3935036921361268922, guid: 20ad656dd8dbeeb40a8300e3248c4c86, type: 3}
   impactPrefab: {fileID: 0}
