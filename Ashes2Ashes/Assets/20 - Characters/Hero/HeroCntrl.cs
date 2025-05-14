@@ -57,14 +57,14 @@ namespace A2A
             if (playerInputCntrl.AttackLight)
             {
                 playerInputCntrl.AttackLight = false;
-                spellCntrl.FireLightAttack(triggerPoint.position, transform.forward);
+                spellCntrl.FireLightAttack(triggerPoint.position, transform.forward, transform.rotation);
 
             }
         }
 
         private void Fire()
         {
-            spellCntrl.FireLightAttack(triggerPoint.position, transform.forward);
+            spellCntrl.FireLightAttack(triggerPoint.position, transform.forward, transform.rotation);
             playerInputCntrl.Fire = false;
         }
 

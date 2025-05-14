@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8070b0a6733e0b47a32cc5e17c2a4a5, type: 3}
+  m_Name: NightOfCoren
+  m_EditorClassIdentifier: 
+  spellName: 
+  image: {fileID: 0}
+  baseDamage: 0
+  duration: 3
+  force: 30
+  flashPrefab: {fileID: 0}
+  spellPrefab: {fileID: 5545520622788317277, guid: 6ecefbeca422e224dba0e9b45f74701f, type: 3}
+  impactPrefab: {fileID: 5988784108087230493, guid: f301962a814453c48a2cb048c40c051f, type: 3}

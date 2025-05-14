@@ -12,8 +12,8 @@ public class SpellCntrl : MonoBehaviour
 
     }
 
-    public void FireLightAttack(Vector3 position, Vector3 direction)
+    public void FireLightAttack(Vector3 position, Vector3 direction, Quaternion rotation)
     {
-        spellLightAttack.CastSpell(position, direction);
+        spellLightAttack.CastSpell(position, direction, rotation);
     }
 }

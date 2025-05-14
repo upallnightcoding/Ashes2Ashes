@@ -17,5 +17,5 @@ public abstract class SpellSO : ScriptableObject
     public GameObject spellPrefab = null;
     public GameObject impactPrefab = null;
 
-    public abstract GameObject CastSpell(Vector3 position, Vector3 direction);
+    public abstract GameObject CastSpell(Vector3 position, Vector3 direction, Quaternion rotation);
 }
