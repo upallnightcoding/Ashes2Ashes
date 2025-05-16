@@ -9706,3 +9706,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330f8fbd7a18bf0478e2e79e26c8f93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onWeaponImpactChannel: {fileID: 11400000, guid: 96ec61d04c6499440b28230ebc14f887, type: 2}
