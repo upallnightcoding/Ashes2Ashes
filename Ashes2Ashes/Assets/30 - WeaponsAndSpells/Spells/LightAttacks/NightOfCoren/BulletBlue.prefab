@@ -9707,3 +9707,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onWeaponImpactChannel: {fileID: 11400000, guid: 96ec61d04c6499440b28230ebc14f887, type: 2}
+  onWeaponsImpactEvent: {fileID: 11400000, guid: 01b525c603a214c45bc2050e4c764f06, type: 2}

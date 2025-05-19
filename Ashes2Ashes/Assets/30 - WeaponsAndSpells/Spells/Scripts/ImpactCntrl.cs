@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class ImpactCntrl : MonoBehaviour
 {
-    public EventChannelDataSO onWeaponImpactChannel;
+    public GameEvent onWeaponsImpactEvent;
 
     private bool hasNotImpacted = true;
 
     private GameObject impactPrefab = null;
-
 
     // Start is called before the first frame update
     public void Set(GameObject impactPrefab)
@@ -24,7 +23,8 @@ public class ImpactCntrl : MonoBehaviour
             hasNotImpacted = false;
 
             //GameObject go = Instantiate(impactPrefab, transform.position, Quaternion.identity);
-            onWeaponImpactChannel.RaiseEvent(new OnWeaponImpactData(impactPrefab, transform.position));
+            //onWeaponImpactChannel.RaiseEvent(new OnWeaponImpactData(impactPrefab, transform.position));
+            onWeaponsImpactEvent.Raise(new OnWeaponImpactData(impactPrefab, transform.position));
 
             Destroy(transform.gameObject);
         }
