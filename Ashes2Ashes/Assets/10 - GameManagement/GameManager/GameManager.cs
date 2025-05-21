@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Events ...")]
     [SerializeField] private GameEvent mainMenuEvent;
+    [SerializeField] private GameEvent startGamePlayEvent;
+
+    [SerializeField] private GameObject hero;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("GameManager ...");
-        //MainMenuStart(null);
+
     }
 
     public void MainMenuStart(EventData eventData)
@@ -18,9 +21,11 @@ public class GameManager : MonoBehaviour
         mainMenuEvent.Raise();
     }
 
-    public void StartGamePlay(EventData eventData)
+    public void StartGamePlay()
     {
+        startGamePlayEvent.Raise();
 
+        RenderHero();
     }
 
     public void Impact(EventData eventData)
@@ -29,6 +34,11 @@ public class GameManager : MonoBehaviour
 
         GameObject go = Instantiate(data.prefab, data.position, Quaternion.identity);
         Destroy(go, 3.0f);
+    }
+
+    private void RenderHero()
+    {
+        hero.SetActive(true);
     }
 }
 
