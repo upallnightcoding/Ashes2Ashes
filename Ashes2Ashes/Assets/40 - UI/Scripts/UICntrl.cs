@@ -10,19 +10,16 @@ public class UICntrl : MonoBehaviour
 
     [Header("Testing Variables ...")]
     [SerializeField] private GameObject landingArea;
+    [SerializeField] private GameObject gamePlayArea;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("UICntrl ...");
-
         OpenMainMenu(null);
     }
 
- 
     public void OpenMainMenu(EventData eventData)
     {
-        Debug.Log("OpenMainMenu ...");
         CloseAllPanels();
 
         mainMenuPanel.SetActive(true);
@@ -41,5 +38,6 @@ public class UICntrl : MonoBehaviour
         mainMenuPanel.SetActive(false);
         gamePlayPanel.SetActive(false);
         landingArea.SetActive(false);
+        gamePlayArea.SetActive(false);
     }
 }

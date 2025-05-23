@@ -22,8 +22,6 @@ public class ImpactCntrl : MonoBehaviour
         {
             hasNotImpacted = false;
 
-            //GameObject go = Instantiate(impactPrefab, transform.position, Quaternion.identity);
-            //onWeaponImpactChannel.RaiseEvent(new OnWeaponImpactData(impactPrefab, transform.position));
             onWeaponsImpactEvent.Raise(new OnWeaponImpactData(impactPrefab, transform.position));
 
             Destroy(transform.gameObject);
