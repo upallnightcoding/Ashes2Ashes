@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986cd87f34a61f846b71e70ca9a34dbe, type: 3}
+  m_Name: WFCTestImages
+  m_EditorClassIdentifier: 
+  gridGameObjectList:
+  - gridGameObject: {fileID: 2895594723065672788, guid: c12aeea462babf94b84144409eb5c05d, type: 3}
+    north: 00000000
+    south: 0000000003000000
+    east: 0000000002000000
+    west: 0000000001000000
+  - gridGameObject: {fileID: 3494678656553108784, guid: 491fdae02c285074db47632abeb3f762, type: 3}
+    north: 01000000
+    south: 0100000003000000
+    east: 0000000002000000
+    west: ffffffff00000000
+  - gridGameObject: {fileID: 1065017294539382744, guid: c8d8d0fe3c87ee946b95d7b4a6d8a835, type: 3}
+    north: 02000000
+    south: 0200000003000000
+    east: ffffffff
+    west: 0000000001000000
+  - gridGameObject: {fileID: 4304949515491390505, guid: 3650329c56a745a4fa766f46f6d504f1, type: 3}
+    north: 00000000
+    south: ffffffff
+    east: 0200000003000000
+    west: 0100000003000000

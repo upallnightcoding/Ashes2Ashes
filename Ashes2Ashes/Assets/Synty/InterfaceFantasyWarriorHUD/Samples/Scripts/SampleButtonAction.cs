@@ -69,7 +69,7 @@ namespace Synty.Interface.FantasyWarriorHUD.Samples
             }
 
             StopAllCoroutines();
-            StartCoroutine(C_ActivateObject());
+            //StartCoroutine(C_ActivateObject());
 
             foreach (GameObject toggleObject in toggleObjects)
             {
