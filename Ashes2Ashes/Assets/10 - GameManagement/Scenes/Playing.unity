@@ -633,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 3964294217322807113, guid: 102ebafd4f7090041a7a2e22f00c0cff, type: 3}
       propertyPath: hero
       value: 
-      objectReference: {fileID: 1683749645}
+      objectReference: {fileID: 1291821664}
     - target: {fileID: 7172829487082619216, guid: 102ebafd4f7090041a7a2e22f00c0cff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

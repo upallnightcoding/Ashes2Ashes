@@ -4,33 +4,34 @@ using UnityEngine;
 
 public class Skeleton_01Cntrl : MonoBehaviour
 {
-    [SerializeField] private Transform hero;
+    [SerializeField] private GameObject hero;
 
-    private float rotationSlerp = 0.2f;
-    private float swipDistance = 0.5f;
+    private Animator animator = null;
+
+    private Fsm fsm = null;
+
+    private void Awake()
+    {
+        fsm = new Fsm();
+
+        fsm.AddState(new State_Skeleton_Idle());
+        fsm.AddState(new State_Skeleton_Chase(hero));
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+    }
+
+    public void StartChase()
+    {
+        animator.SetBool("chase", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveSkeleton();
-    }
-
-    private void MoveSkeleton()
-    {
-        Vector3 direction = hero.transform.position - transform.position;
-        direction.y = 0.0f;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSlerp);
-    }
-
-    private void SwipAtHero()
-    {
-
+        fsm.OnUpdate(gameObject, Time.deltaTime);
     }
 }
